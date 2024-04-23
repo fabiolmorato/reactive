@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+      .app {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        gap: 1rem;
+      }
+
+      .info {
+        font-size: 2rem;
+      }
+
+      .board {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+        gap: 1rem;
+      }
+
+      .row {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 0.25rem;
+        background-color: #ddd;
+        cursor: pointer;
+        transition: all ease .2s;
+      }
+
+      .cell:hover {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div class="info" reactive>{{currentPlayer}}'s turn</div>
+
+      <div class="board" reactive>
+        {{#for row of board}}
+          <div class="row">
+            {{#for cell of row}}
+              <div class="cell" onclick="play({{$rowIndex}}, {{$cellIndex}})">{{cell}}</div>
+            {{/for}}
+          </div>
+        {{/for}}
+      </div>
+
+      <div reactive="state2">
+        <input type="text" reactive="state2" reactive-bind="stuffTyped" placeholder="type something..." />
+        <div>{{stuffTyped ? `Você digitou "${stuffTyped}"` : 'Digite algo em cima :)'}}</div>
+      </div>
+    </div>
+
+    <script src="../dist/index.js"></script>
+
+    <script>
+      const state = reactive({
+        board: [
+          ["_", "_", "_"],
+          ["_", "_", "_"],
+          ["_", "_", "_"]
+        ],
+        currentPlayer: "X",
+        stuffTyped: ""
+      });
+
+      function play (rowIndex, cellIndex) {
+        state.board[rowIndex][cellIndex] = state.currentPlayer;
+        state.currentPlayer = state.currentPlayer === "X" ? "O" : "X";
+      }
+    </script>
+
+    <script>
+      const state2 = reactive({
+        stuffTyped: ""
+      }, "state2");
+    </script>
+  </body>
+</html>
