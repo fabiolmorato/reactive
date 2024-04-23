@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo</title>
+  </head>
+  <body>
+    <div reactive>
+      <input type="text" reactive reactive-bind="stuffTyped" placeholder="type something..." />
+      <div>{{stuffTyped ? `You typed "${stuffTyped}"` : 'Type something up there :)'}}</div>
+    </div>
+
+    <script src="../dist/index.js"></script>
+
+    <script>
+      const state2 = reactive({
+        stuffTyped: ""
+      });
+    </script>
+  </body>
+</html>

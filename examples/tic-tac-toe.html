@@ -63,11 +63,6 @@
           </div>
         {{/for}}
       </div>
-
-      <div reactive="state2">
-        <input type="text" reactive="state2" reactive-bind="stuffTyped" placeholder="type something..." />
-        <div>{{stuffTyped ? `Você digitou "${stuffTyped}"` : 'Digite algo em cima :)'}}</div>
-      </div>
     </div>
 
     <script src="../dist/index.js"></script>
@@ -87,12 +82,6 @@
         state.board[rowIndex][cellIndex] = state.currentPlayer;
         state.currentPlayer = state.currentPlayer === "X" ? "O" : "X";
       }
-    </script>
-
-    <script>
-      const state2 = reactive({
-        stuffTyped: ""
-      }, "state2");
     </script>
   </body>
 </html>
