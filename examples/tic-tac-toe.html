@@ -58,7 +58,7 @@
         {{#for row of board}}
           <div class="row">
             {{#for cell of row}}
-              <div class="cell" onclick="play({{$rowIndex}}, {{$cellIndex}})">{{cell}}</div>
+              <div class="cell" onclick="play({{$rowIndex}}, {{$cellIndex}})" data-testid="board-cell-{{$rowIndex}}-{{$cellIndex}}">{{cell}}</div>
             {{/for}}
           </div>
         {{/for}}
@@ -74,11 +74,11 @@
           ["_", "_", "_"],
           ["_", "_", "_"]
         ],
-        currentPlayer: "X",
-        stuffTyped: ""
+        currentPlayer: "X"
       });
 
       function play (rowIndex, cellIndex) {
+        if (state.board[rowIndex][cellIndex] !== "_") return;
         state.board[rowIndex][cellIndex] = state.currentPlayer;
         state.currentPlayer = state.currentPlayer === "X" ? "O" : "X";
       }

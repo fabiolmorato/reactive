@@ -9,7 +9,7 @@
     <div reactive>
       You clicked {{count}} times!
       {{#if didUserClickMoreThan10Times}}
-      WOW! So many clicks!
+        WOW! So many clicks!
       {{/if}}
       <button onclick="increment()">Click me</button>
     </div>
@@ -21,6 +21,12 @@
         count: 0,
         didUserClickMoreThan10Times: reactive.computed((state) => state.count > 10)
       });
+
+      reactive.observe(() => {
+        if (state.count > 15) {
+          alert("Woah, calm down!");
+        }
+      }, () => [state.count]);
     
       function increment () {
         state.count++;

@@ -62,11 +62,11 @@ You can also have multiple reactive states:
 
 <script>
   const state = reactive({
-    something: "Seomthing from default state"
+    something: "Something from default state"
   });
 
   const state2 = reactive({
-    something: "Seomthing from default state"
+    something: "Something from state2"
   }, "state2");
 </script>
 ```

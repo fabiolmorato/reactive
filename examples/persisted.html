@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Echo</title>
+    <title>Persisted</title>
   </head>
   <body>
     <div reactive>
-      <input data-testid="bind-input" type="text" reactive reactive-bind="stuffTyped" placeholder="type something..." />
-      <div>{{stuffTyped ? `You typed "${stuffTyped}"` : 'Type something up there :)'}}</div>
+      <input data-testid="bind-input" type="text" reactive reactive-bind="username" placeholder="username..." />
+      <div>{{username ? `Welcome back, ${username}` : 'Input your username above'}}</div>
     </div>
 
     <script src="../dist/index.js"></script>
 
     <script>
       const state2 = reactive({
-        stuffTyped: ""
+        username: reactive.persisted("")
       });
     </script>
   </body>
